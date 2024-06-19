@@ -36,6 +36,42 @@
       "artifacts": [
         "Lock"
       ]
+    },
+    "/home/afpedreros/code/personal-projects/red-tickets/contracts/Rocket.sol": {
+      "lastModificationDate": 1718808340035,
+      "contentHash": "292fb588a01b75d6b8a7f78c2ed65191",
+      "sourceName": "contracts/Rocket.sol",
+      "solcConfig": {
+        "version": "0.8.24",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "Rocket"
+      ]
     }
   }
 }

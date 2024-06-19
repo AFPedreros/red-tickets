@@ -2,3 +2,4 @@
 /* tslint:disable */
 /* eslint-disable */
 export { Lock__factory } from "./Lock__factory";
+export { Rocket__factory } from "./Rocket__factory";

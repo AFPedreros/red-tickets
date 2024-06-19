@@ -52,9 +52,12 @@
 	},
 	"devDependencies": {
 		"@ianvs/prettier-plugin-sort-imports": "^4.2.1",
+		"@nomicfoundation/hardhat-chai-matchers": "^2.0.7",
+		"@nomicfoundation/hardhat-ignition": "^0.15.5",
 		"@nomicfoundation/hardhat-toolbox": "^5.0.0",
 		"hardhat": "^2.22.5",
 		"prettier": "^3.3.2",
+		"prettier-plugin-solidity": "^1.3.1",
 		"prettier-plugin-tailwindcss": "^0.6.5"
 	}
 }
