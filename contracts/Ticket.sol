@@ -10,7 +10,9 @@ contract Ticket is ERC721, Ownable {
   uint256 public constant MAX_TICKETS = 37899;
   uint256 public ticketsForSale = MAX_TICKETS;
 
-  constructor() ERC721("Ticket", "TICKET") {}
+  constructor(
+    address initialOwner
+  ) ERC721("Ticket", "TICKET") Ownable(initialOwner) {}
 
   function mintTicket(address to) public onlyOwner {
     require(
