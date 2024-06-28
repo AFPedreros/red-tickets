@@ -17,5 +17,10 @@ describe("Ticket", () => {
 
       expect(await ticket.owner()).to.equal(owner.address);
     });
+    it("Should set the initial ticket price to 1 ether", async function () {
+      const { ticket } = await deployTicketFixture();
+
+      expect(await ticket.ticketPrice()).to.equal(hre.ethers.parseEther("1"));
+    });
   });
 });
