@@ -73,45 +73,6 @@
         "Rocket"
       ]
     },
-    "/home/afpedreros/code/personal-projects/red-tickets/contracts/Ticket.sol": {
-      "lastModificationDate": 1719446035152,
-      "contentHash": "60f7ccbc46d149d199e2f479addd90fd",
-      "sourceName": "contracts/Ticket.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "evmVersion": "paris",
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "@openzeppelin/contracts/token/ERC721/ERC721.sol",
-        "@openzeppelin/contracts/access/Ownable.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "Ticket"
-      ]
-    },
     "/home/afpedreros/code/personal-projects/red-tickets/node_modules/@openzeppelin/contracts/token/ERC721/ERC721.sol": {
       "lastModificationDate": 1718981153862,
       "contentHash": "1e64e2ad597dc5b2dae11346502baad4",
@@ -563,6 +524,45 @@
       ],
       "artifacts": [
         "IERC165"
+      ]
+    },
+    "/home/afpedreros/code/personal-projects/red-tickets/contracts/RedTickets.sol": {
+      "lastModificationDate": 1719677235675,
+      "contentHash": "eadca5f2b7f44e0825dc07ff8fc8d936",
+      "sourceName": "contracts/RedTickets.sol",
+      "solcConfig": {
+        "version": "0.8.24",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/token/ERC721/ERC721.sol",
+        "@openzeppelin/contracts/access/Ownable.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "RedTickets"
       ]
     }
   }

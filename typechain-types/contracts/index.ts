@@ -2,5 +2,5 @@
 /* tslint:disable */
 /* eslint-disable */
 export type { Lock } from "./Lock";
+export type { RedTickets } from "./RedTickets";
 export type { Rocket } from "./Rocket";
-export type { Ticket } from "./Ticket";

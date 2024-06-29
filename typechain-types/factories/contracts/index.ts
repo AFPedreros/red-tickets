@@ -2,5 +2,5 @@
 /* tslint:disable */
 /* eslint-disable */
 export { Lock__factory } from "./Lock__factory";
+export { RedTickets__factory } from "./RedTickets__factory";
 export { Rocket__factory } from "./Rocket__factory";
-export { Ticket__factory } from "./Ticket__factory";

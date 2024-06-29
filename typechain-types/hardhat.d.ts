@@ -66,13 +66,13 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.Lock__factory>;
     getContractFactory(
+      name: "RedTickets",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.RedTickets__factory>;
+    getContractFactory(
       name: "Rocket",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.Rocket__factory>;
-    getContractFactory(
-      name: "Ticket",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.Ticket__factory>;
 
     getContractAt(
       name: "Ownable",
@@ -140,15 +140,15 @@ declare module "hardhat/types/runtime" {
       signer?: ethers.Signer
     ): Promise<Contracts.Lock>;
     getContractAt(
-      name: "Rocket",
+      name: "RedTickets",
       address: string | ethers.Addressable,
       signer?: ethers.Signer
-    ): Promise<Contracts.Rocket>;
+    ): Promise<Contracts.RedTickets>;
     getContractAt(
-      name: "Ticket",
+      name: "Rocket",
       address: string | ethers.Addressable,
       signer?: ethers.Signer
-    ): Promise<Contracts.Ticket>;
+    ): Promise<Contracts.Rocket>;
 
     deployContract(
       name: "Ownable",
@@ -203,13 +203,13 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.Lock>;
     deployContract(
+      name: "RedTickets",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.RedTickets>;
+    deployContract(
       name: "Rocket",
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.Rocket>;
-    deployContract(
-      name: "Ticket",
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.Ticket>;
 
     deployContract(
       name: "Ownable",
@@ -277,15 +277,15 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.Lock>;
     deployContract(
+      name: "RedTickets",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.RedTickets>;
+    deployContract(
       name: "Rocket",
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.Rocket>;
-    deployContract(
-      name: "Ticket",
-      args: any[],
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.Ticket>;
 
     // default types
     getContractFactory(
