@@ -527,8 +527,8 @@
       ]
     },
     "/home/afpedreros/code/personal-projects/red-tickets/contracts/RedTickets.sol": {
-      "lastModificationDate": 1719677235675,
-      "contentHash": "eadca5f2b7f44e0825dc07ff8fc8d936",
+      "lastModificationDate": 1719873664533,
+      "contentHash": "17338862946ab05696130ef06b2ae3a6",
       "sourceName": "contracts/RedTickets.sol",
       "solcConfig": {
         "version": "0.8.24",
