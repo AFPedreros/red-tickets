@@ -27,7 +27,7 @@ export declare namespace RedTickets {
   export type MatchStruct = {
     id: BigNumberish;
     name: string;
-    cost: BigNumberish;
+    price: BigNumberish;
     tickets: BigNumberish;
     maxTickets: BigNumberish;
     date: string;
@@ -38,7 +38,7 @@ export declare namespace RedTickets {
   export type MatchStructOutput = [
     id: bigint,
     name: string,
-    cost: bigint,
+    price: bigint,
     tickets: bigint,
     maxTickets: bigint,
     date: string,
@@ -47,7 +47,7 @@ export declare namespace RedTickets {
   ] & {
     id: bigint;
     name: string;
-    cost: bigint;
+    price: bigint;
     tickets: bigint;
     maxTickets: bigint;
     date: string;
@@ -434,7 +434,7 @@ export interface RedTickets extends BaseContract {
   listMatch: TypedContractMethod<
     [
       _name: string,
-      _cost: BigNumberish,
+      _price: BigNumberish,
       _maxTickets: BigNumberish,
       _date: string,
       _time: string,
@@ -450,7 +450,7 @@ export interface RedTickets extends BaseContract {
       [bigint, string, bigint, bigint, bigint, string, string, string] & {
         id: bigint;
         name: string;
-        cost: bigint;
+        price: bigint;
         tickets: bigint;
         maxTickets: bigint;
         date: string;
@@ -599,7 +599,7 @@ export interface RedTickets extends BaseContract {
   ): TypedContractMethod<
     [
       _name: string,
-      _cost: BigNumberish,
+      _price: BigNumberish,
       _maxTickets: BigNumberish,
       _date: string,
       _time: string,
@@ -616,7 +616,7 @@ export interface RedTickets extends BaseContract {
       [bigint, string, bigint, bigint, bigint, string, string, string] & {
         id: bigint;
         name: string;
-        cost: bigint;
+        price: bigint;
         tickets: bigint;
         maxTickets: bigint;
         date: string;

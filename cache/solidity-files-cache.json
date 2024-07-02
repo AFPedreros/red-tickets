@@ -1,78 +1,6 @@
 {
   "_format": "hh-sol-cache-2",
   "files": {
-    "/home/afpedreros/code/personal-projects/red-tickets/contracts/Lock.sol": {
-      "lastModificationDate": 1719361374595,
-      "contentHash": "348f90ed3011ece72d6bc5772f0f81d2",
-      "sourceName": "contracts/Lock.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "evmVersion": "paris",
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "Lock"
-      ]
-    },
-    "/home/afpedreros/code/personal-projects/red-tickets/contracts/Rocket.sol": {
-      "lastModificationDate": 1718808340035,
-      "contentHash": "292fb588a01b75d6b8a7f78c2ed65191",
-      "sourceName": "contracts/Rocket.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "evmVersion": "paris",
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "Rocket"
-      ]
-    },
     "/home/afpedreros/code/personal-projects/red-tickets/node_modules/@openzeppelin/contracts/token/ERC721/ERC721.sol": {
       "lastModificationDate": 1718981153862,
       "contentHash": "1e64e2ad597dc5b2dae11346502baad4",
@@ -527,8 +455,8 @@
       ]
     },
     "/home/afpedreros/code/personal-projects/red-tickets/contracts/RedTickets.sol": {
-      "lastModificationDate": 1719873664533,
-      "contentHash": "17338862946ab05696130ef06b2ae3a6",
+      "lastModificationDate": 1719960449905,
+      "contentHash": "130ea3664b826164e027370410c6a84e",
       "sourceName": "contracts/RedTickets.sol",
       "solcConfig": {
         "version": "0.8.24",
