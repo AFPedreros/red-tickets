@@ -12,7 +12,7 @@ contract RedTickets is ERC721, Ownable {
   struct Match {
     uint256 id;
     string name;
-    uint256 cost;
+    uint256 price;
     uint256 tickets;
     uint256 maxTickets;
     string date;
@@ -31,7 +31,7 @@ contract RedTickets is ERC721, Ownable {
 
   function listMatch(
     string memory _name,
-    uint256 _cost,
+    uint256 _price,
     uint256 _maxTickets,
     string memory _date,
     string memory _time,
@@ -42,7 +42,7 @@ contract RedTickets is ERC721, Ownable {
     matches[totalMatches] = Match(
       totalMatches,
       _name,
-      _cost,
+      _price,
       _maxTickets,
       _maxTickets,
       _date,
@@ -53,7 +53,7 @@ contract RedTickets is ERC721, Ownable {
 
   function mintTicket(uint256 _id, uint256 _seat) public payable {
     require(_id != 0 && _id <= totalMatches, "Invalid match ID");
-    require(msg.value >= matches[_id].cost, "Incorrect amount sent");
+    require(msg.value >= matches[_id].price, "Incorrect amount sent");
     require(seatTaken[_id][_seat] == address(0), "Seat already taken");
     require(_seat <= matches[_id].maxTickets, "Invalid seat number");
 
@@ -68,7 +68,7 @@ contract RedTickets is ERC721, Ownable {
 
   function setTicketPrice(uint256 _id, uint256 _price) public onlyOwner {
     require(_id != 0 && _id <= totalMatches, "Invalid match ID");
-    matches[_id].cost = _price;
+    matches[_id].price = _price;
   }
 
   function setTicketsForSale(uint256 _id, uint256 _tickets) public onlyOwner {

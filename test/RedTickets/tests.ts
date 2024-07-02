@@ -1,18 +1,10 @@
 import { expect } from "chai";
 import hre from "hardhat";
 
-const MAX_TICKETS = 37899;
+import { MATCH_INFO, MAX_TICKETS } from "./constants";
+import { deployMatchTicketFixture } from "./functions";
 
 describe("RedTickets", () => {
-  async function deployMatchTicketFixture() {
-    const [owner, otherAccount] = await hre.ethers.getSigners();
-
-    const MatchTicket = await hre.ethers.getContractFactory("RedTickets");
-    const matchTicket = await MatchTicket.deploy(owner.address);
-
-    return { matchTicket, owner, otherAccount };
-  }
-
   describe("Deployment", () => {
     it("Should set the right owner", async function () {
       const { matchTicket, owner } = await deployMatchTicketFixture();
@@ -34,17 +26,17 @@ describe("RedTickets", () => {
       await matchTicket
         .connect(owner)
         .listMatch(
-          "América de Cali vs Deportivo Cali",
-          hre.ethers.parseEther("1"),
-          1000,
-          "2024-07-01",
-          "20:00",
-          "Estadio Olímpico Pascual Guerrero",
+          MATCH_INFO.name,
+          MATCH_INFO.price,
+          MATCH_INFO.tickets,
+          MATCH_INFO.date,
+          MATCH_INFO.time,
+          MATCH_INFO.location,
         );
 
       const matchDetails = await matchTicket.getMatch(1);
 
-      expect(matchDetails.cost).to.equal(hre.ethers.parseEther("1"));
+      expect(matchDetails.price).to.equal(hre.ethers.parseEther("1"));
     });
 
     it("Should fail to list a match if max tickets exceed limit", async function () {
@@ -55,13 +47,35 @@ describe("RedTickets", () => {
           .connect(owner)
           .listMatch(
             "Partido inválido",
-            hre.ethers.parseEther("1"),
+            MATCH_INFO.price,
             40000,
-            "2024-07-01",
-            "20:00",
-            "Estadio Olímpico Pascual Guerrero",
+            MATCH_INFO.date,
+            MATCH_INFO.time,
+            MATCH_INFO.location,
           ),
       ).to.be.revertedWith("Cannot exceed stadium capacity");
+    });
+
+    it("Should fail to list a match if not the owner", async function () {
+      const { matchTicket, otherAccount } = await deployMatchTicketFixture();
+
+      await expect(
+        matchTicket
+          .connect(otherAccount)
+          .listMatch(
+            MATCH_INFO.name,
+            MATCH_INFO.price,
+            MATCH_INFO.tickets,
+            MATCH_INFO.date,
+            MATCH_INFO.time,
+            MATCH_INFO.location,
+          ),
+      )
+        .to.be.revertedWithCustomError(
+          matchTicket,
+          "OwnableUnauthorizedAccount",
+        )
+        .withArgs(otherAccount.address);
     });
   });
 });
