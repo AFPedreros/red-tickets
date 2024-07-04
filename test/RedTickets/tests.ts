@@ -162,7 +162,7 @@ describe("RedTickets", () => {
         ).to.be.revertedWith("Invalid match ID");
       });
 
-      it("Should fail if the ticket amount is already sold", async () => {
+      it("Should fail if attempting to set ticket availability below the number of tickets already sold", async () => {
         await redTickets
           .connect(owner)
           .listMatch(
@@ -181,6 +181,7 @@ describe("RedTickets", () => {
           redTickets.connect(owner).setTicketsForSale(1, 0),
         ).to.be.revertedWith("Cannot set less tickets than already sold");
       });
+
       describe("When not the owner", () => {
         beforeEach(async () => {
           await redTickets
