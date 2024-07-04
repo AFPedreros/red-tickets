@@ -27,7 +27,7 @@ contract RedTickets is ERC721, Ownable {
 
   constructor(
     address initialOwner
-  ) ERC721("RedTickets", "RT") Ownable(initialOwner) {}
+  ) ERC721("RedTickets", "RTK") Ownable(initialOwner) {}
 
   function listMatch(
     string memory _name,
@@ -49,6 +49,11 @@ contract RedTickets is ERC721, Ownable {
       _time,
       _location
     );
+  }
+
+  function removeMatch(uint256 _id) public onlyOwner {
+    require(_id != 0 && _id <= totalMatches, "Invalid match ID");
+    delete matches[_id];
   }
 
   function mintTicket(uint256 _id, uint256 _seat) public payable {
@@ -74,6 +79,10 @@ contract RedTickets is ERC721, Ownable {
   function setTicketsForSale(uint256 _id, uint256 _tickets) public onlyOwner {
     require(_id != 0 && _id <= totalMatches, "Invalid match ID");
     require(_tickets <= MAX_TICKETS, "Cannot exceed stadium capacity");
+    require(
+      _tickets >= matches[_id].maxTickets - matches[_id].tickets,
+      "Cannot set less tickets than already sold"
+    );
     matches[_id].tickets = _tickets;
   }
 
