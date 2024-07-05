@@ -34,6 +34,7 @@ contract RedTickets is ERC721, Ownable {
     string time,
     string location
   );
+  event MatchRemoved(uint256 id);
 
   constructor(
     address initialOwner
@@ -74,6 +75,8 @@ contract RedTickets is ERC721, Ownable {
   function removeMatch(uint256 _id) public onlyOwner {
     require(_id != 0 && _id <= totalMatches, "Invalid match ID");
     delete matches[_id];
+
+    emit MatchRemoved(_id);
   }
 
   function mintTicket(uint256 _id, uint256 _seat) public payable {
