@@ -35,6 +35,9 @@ contract RedTickets is ERC721, Ownable {
     string location
   );
   event MatchRemoved(uint256 id);
+  event TicketMinted(uint256 matchId, uint256 seat, address buyer);
+  event TicketPriceSet(uint256 matchId, uint256 newPrice);
+  event TicketsForSaleSet(uint256 matchId, uint256 newTickets);
 
   constructor(
     address initialOwner
@@ -92,11 +95,15 @@ contract RedTickets is ERC721, Ownable {
 
     totalSupply++;
     _safeMint(msg.sender, totalSupply);
+
+    emit TicketMinted(_id, _seat, msg.sender);
   }
 
   function setTicketPrice(uint256 _id, uint256 _price) public onlyOwner {
     require(_id != 0 && _id <= totalMatches, "Invalid match ID");
     matches[_id].price = _price;
+
+    emit TicketPriceSet(_id, _price);
   }
 
   function setTicketsForSale(uint256 _id, uint256 _tickets) public onlyOwner {
@@ -107,6 +114,8 @@ contract RedTickets is ERC721, Ownable {
       "Cannot set less tickets than already sold"
     );
     matches[_id].tickets = _tickets;
+
+    emit TicketsForSaleSet(_id, _tickets);
   }
 
   function getMatch(uint256 _id) public view returns (Match memory) {
