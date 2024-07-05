@@ -118,6 +118,53 @@ describe("RedTickets", () => {
         expect(matchDetails2.name).to.equal("Match 2");
         expect(matchDetails3.name).to.equal("Match 3");
       });
+
+      it("Should emit event on match listing", async () => {
+        await expect(
+          redTickets
+            .connect(owner)
+            .listMatch(
+              "Match 4",
+              hre.ethers.parseEther("1"),
+              1000,
+              "2024-07-05",
+              "17:00",
+              "Stadium 4",
+            ),
+        )
+          .to.emit(redTickets, "MatchListed")
+          .withArgs(
+            2, // Assuming this is the second match
+            "Match 4",
+            hre.ethers.parseEther("1"),
+            1000,
+            "2024-07-05",
+            "17:00",
+            "Stadium 4",
+          );
+      });
+
+      it("Should emit event correctly on match removal", async () => {
+        await expect(redTickets.connect(owner).removeMatch(1))
+          .to.emit(redTickets, "MatchRemoved")
+          .withArgs(1);
+      });
+
+      it("Should emit event correctly on ticket price set", async () => {
+        await expect(
+          redTickets
+            .connect(owner)
+            .setTicketPrice(1, hre.ethers.parseEther("2")),
+        )
+          .to.emit(redTickets, "TicketPriceSet")
+          .withArgs(1, hre.ethers.parseEther("2"));
+      });
+
+      it("Should emit events correctly on tickets for sale set", async () => {
+        await expect(redTickets.connect(owner).setTicketsForSale(1, 100))
+          .to.emit(redTickets, "TicketsForSaleSet")
+          .withArgs(1, 100);
+      });
     });
 
     describe("Failure", () => {
@@ -293,38 +340,25 @@ describe("RedTickets", () => {
         );
       });
 
-      // it("Should emit events correctly on match listing and ticket purchase", async () => {
-      //   await expect(
-      //     redTickets
-      //       .connect(owner)
-      //       .listMatch(
-      //         "Match 5",
-      //         hre.ethers.parseEther("1"),
-      //         1000,
-      //         "2024-07-06",
-      //         "19:00",
-      //         "Stadium 5",
-      //       ),
-      //   )
-      //     .to.emit(redTickets, "MatchListed")
-      //     .withArgs(
-      //       5,
-      //       "Match 5",
-      //       hre.ethers.parseEther("1"),
-      //       1000,
-      //       "2024-07-06",
-      //       "19:00",
-      //       "Stadium 5",
-      //     );
-
-      //   await expect(
-      //     redTickets
-      //       .connect(otherAccount)
-      //       .mintTicket(5, 1, { value: hre.ethers.parseEther("1") }),
-      //   )
-      //     .to.emit(redTickets, "TicketMinted")
-      //     .withArgs(otherAccount.address, 5, 1);
-      // });
+      it("Should emit event on ticket purchase", async () => {
+        await redTickets
+          .connect(owner)
+          .listMatch(
+            "Match 5",
+            hre.ethers.parseEther("1"),
+            1000,
+            "2024-07-06",
+            "19:00",
+            "Stadium 5",
+          ),
+          await expect(
+            redTickets
+              .connect(otherAccount)
+              .mintTicket(2, 1, { value: hre.ethers.parseEther("1") }),
+          )
+            .to.emit(redTickets, "TicketMinted")
+            .withArgs(2, 1, otherAccount.address);
+      });
     });
 
     describe("Failure", () => {
