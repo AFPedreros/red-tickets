@@ -25,6 +25,16 @@ contract RedTickets is ERC721, Ownable {
   mapping(uint256 => mapping(uint256 => address)) public seatTaken;
   mapping(uint256 => uint256[]) public seatsTaken;
 
+  event MatchListed(
+    uint256 id,
+    string name,
+    uint256 price,
+    uint256 maxTickets,
+    string date,
+    string time,
+    string location
+  );
+
   constructor(
     address initialOwner
   ) ERC721("RedTickets", "RTK") Ownable(initialOwner) {}
@@ -44,6 +54,16 @@ contract RedTickets is ERC721, Ownable {
       _name,
       _price,
       _maxTickets,
+      _maxTickets,
+      _date,
+      _time,
+      _location
+    );
+
+    emit MatchListed(
+      totalMatches,
+      _name,
+      _price,
       _maxTickets,
       _date,
       _time,
