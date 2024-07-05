@@ -96,7 +96,12 @@ export interface RedTicketsInterface extends Interface {
     nameOrSignatureOrTopic:
       | "Approval"
       | "ApprovalForAll"
+      | "MatchListed"
+      | "MatchRemoved"
       | "OwnershipTransferred"
+      | "TicketMinted"
+      | "TicketPriceSet"
+      | "TicketsForSaleSet"
       | "Transfer"
   ): EventFragment;
 
@@ -334,12 +339,102 @@ export namespace ApprovalForAllEvent {
   export type LogDescription = TypedLogDescription<Event>;
 }
 
+export namespace MatchListedEvent {
+  export type InputTuple = [
+    id: BigNumberish,
+    name: string,
+    price: BigNumberish,
+    maxTickets: BigNumberish,
+    date: string,
+    time: string,
+    location: string
+  ];
+  export type OutputTuple = [
+    id: bigint,
+    name: string,
+    price: bigint,
+    maxTickets: bigint,
+    date: string,
+    time: string,
+    location: string
+  ];
+  export interface OutputObject {
+    id: bigint;
+    name: string;
+    price: bigint;
+    maxTickets: bigint;
+    date: string;
+    time: string;
+    location: string;
+  }
+  export type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+  export type Filter = TypedDeferredTopicFilter<Event>;
+  export type Log = TypedEventLog<Event>;
+  export type LogDescription = TypedLogDescription<Event>;
+}
+
+export namespace MatchRemovedEvent {
+  export type InputTuple = [id: BigNumberish];
+  export type OutputTuple = [id: bigint];
+  export interface OutputObject {
+    id: bigint;
+  }
+  export type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+  export type Filter = TypedDeferredTopicFilter<Event>;
+  export type Log = TypedEventLog<Event>;
+  export type LogDescription = TypedLogDescription<Event>;
+}
+
 export namespace OwnershipTransferredEvent {
   export type InputTuple = [previousOwner: AddressLike, newOwner: AddressLike];
   export type OutputTuple = [previousOwner: string, newOwner: string];
   export interface OutputObject {
     previousOwner: string;
     newOwner: string;
+  }
+  export type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+  export type Filter = TypedDeferredTopicFilter<Event>;
+  export type Log = TypedEventLog<Event>;
+  export type LogDescription = TypedLogDescription<Event>;
+}
+
+export namespace TicketMintedEvent {
+  export type InputTuple = [
+    matchId: BigNumberish,
+    seat: BigNumberish,
+    buyer: AddressLike
+  ];
+  export type OutputTuple = [matchId: bigint, seat: bigint, buyer: string];
+  export interface OutputObject {
+    matchId: bigint;
+    seat: bigint;
+    buyer: string;
+  }
+  export type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+  export type Filter = TypedDeferredTopicFilter<Event>;
+  export type Log = TypedEventLog<Event>;
+  export type LogDescription = TypedLogDescription<Event>;
+}
+
+export namespace TicketPriceSetEvent {
+  export type InputTuple = [matchId: BigNumberish, newPrice: BigNumberish];
+  export type OutputTuple = [matchId: bigint, newPrice: bigint];
+  export interface OutputObject {
+    matchId: bigint;
+    newPrice: bigint;
+  }
+  export type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+  export type Filter = TypedDeferredTopicFilter<Event>;
+  export type Log = TypedEventLog<Event>;
+  export type LogDescription = TypedLogDescription<Event>;
+}
+
+export namespace TicketsForSaleSetEvent {
+  export type InputTuple = [matchId: BigNumberish, newTickets: BigNumberish];
+  export type OutputTuple = [matchId: bigint, newTickets: bigint];
+  export interface OutputObject {
+    matchId: bigint;
+    newTickets: bigint;
   }
   export type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
   export type Filter = TypedDeferredTopicFilter<Event>;
@@ -757,11 +852,46 @@ export interface RedTickets extends BaseContract {
     ApprovalForAllEvent.OutputObject
   >;
   getEvent(
+    key: "MatchListed"
+  ): TypedContractEvent<
+    MatchListedEvent.InputTuple,
+    MatchListedEvent.OutputTuple,
+    MatchListedEvent.OutputObject
+  >;
+  getEvent(
+    key: "MatchRemoved"
+  ): TypedContractEvent<
+    MatchRemovedEvent.InputTuple,
+    MatchRemovedEvent.OutputTuple,
+    MatchRemovedEvent.OutputObject
+  >;
+  getEvent(
     key: "OwnershipTransferred"
   ): TypedContractEvent<
     OwnershipTransferredEvent.InputTuple,
     OwnershipTransferredEvent.OutputTuple,
     OwnershipTransferredEvent.OutputObject
+  >;
+  getEvent(
+    key: "TicketMinted"
+  ): TypedContractEvent<
+    TicketMintedEvent.InputTuple,
+    TicketMintedEvent.OutputTuple,
+    TicketMintedEvent.OutputObject
+  >;
+  getEvent(
+    key: "TicketPriceSet"
+  ): TypedContractEvent<
+    TicketPriceSetEvent.InputTuple,
+    TicketPriceSetEvent.OutputTuple,
+    TicketPriceSetEvent.OutputObject
+  >;
+  getEvent(
+    key: "TicketsForSaleSet"
+  ): TypedContractEvent<
+    TicketsForSaleSetEvent.InputTuple,
+    TicketsForSaleSetEvent.OutputTuple,
+    TicketsForSaleSetEvent.OutputObject
   >;
   getEvent(
     key: "Transfer"
@@ -794,6 +924,28 @@ export interface RedTickets extends BaseContract {
       ApprovalForAllEvent.OutputObject
     >;
 
+    "MatchListed(uint256,string,uint256,uint256,string,string,string)": TypedContractEvent<
+      MatchListedEvent.InputTuple,
+      MatchListedEvent.OutputTuple,
+      MatchListedEvent.OutputObject
+    >;
+    MatchListed: TypedContractEvent<
+      MatchListedEvent.InputTuple,
+      MatchListedEvent.OutputTuple,
+      MatchListedEvent.OutputObject
+    >;
+
+    "MatchRemoved(uint256)": TypedContractEvent<
+      MatchRemovedEvent.InputTuple,
+      MatchRemovedEvent.OutputTuple,
+      MatchRemovedEvent.OutputObject
+    >;
+    MatchRemoved: TypedContractEvent<
+      MatchRemovedEvent.InputTuple,
+      MatchRemovedEvent.OutputTuple,
+      MatchRemovedEvent.OutputObject
+    >;
+
     "OwnershipTransferred(address,address)": TypedContractEvent<
       OwnershipTransferredEvent.InputTuple,
       OwnershipTransferredEvent.OutputTuple,
@@ -803,6 +955,39 @@ export interface RedTickets extends BaseContract {
       OwnershipTransferredEvent.InputTuple,
       OwnershipTransferredEvent.OutputTuple,
       OwnershipTransferredEvent.OutputObject
+    >;
+
+    "TicketMinted(uint256,uint256,address)": TypedContractEvent<
+      TicketMintedEvent.InputTuple,
+      TicketMintedEvent.OutputTuple,
+      TicketMintedEvent.OutputObject
+    >;
+    TicketMinted: TypedContractEvent<
+      TicketMintedEvent.InputTuple,
+      TicketMintedEvent.OutputTuple,
+      TicketMintedEvent.OutputObject
+    >;
+
+    "TicketPriceSet(uint256,uint256)": TypedContractEvent<
+      TicketPriceSetEvent.InputTuple,
+      TicketPriceSetEvent.OutputTuple,
+      TicketPriceSetEvent.OutputObject
+    >;
+    TicketPriceSet: TypedContractEvent<
+      TicketPriceSetEvent.InputTuple,
+      TicketPriceSetEvent.OutputTuple,
+      TicketPriceSetEvent.OutputObject
+    >;
+
+    "TicketsForSaleSet(uint256,uint256)": TypedContractEvent<
+      TicketsForSaleSetEvent.InputTuple,
+      TicketsForSaleSetEvent.OutputTuple,
+      TicketsForSaleSetEvent.OutputObject
+    >;
+    TicketsForSaleSet: TypedContractEvent<
+      TicketsForSaleSetEvent.InputTuple,
+      TicketsForSaleSetEvent.OutputTuple,
+      TicketsForSaleSetEvent.OutputObject
     >;
 
     "Transfer(address,address,uint256)": TypedContractEvent<
